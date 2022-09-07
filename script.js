@@ -35,24 +35,58 @@ let B = document.getElementById("B");
 let C = document.getElementById("C");
 let D = document.getElementById("D");
 let currentQuestionIndex = 0;
+const currentQuestion = questions[currentQuestionIndex]
 
 // function that actually renders qustions onto the page.
 function showQuestions(){
-    buttonsDiv.textContent=questions[0].question;
-    A.textContent = questions[0].choices[0];
-    B.textContent = questions[0].choices[1];
-    C.textContent = questions[0].choices[2];
-    D.textContent = questions[0].choices[3];
+    // buttonsDiv.textContent=questions[0].question;
+    // A.textContent = questions[0].choices[0];
+    // B.textContent = questions[0].choices[1];
+    // C.textContent = questions[0].choices[2];
+    // D.textContent = questions[0].choices[3];
+    console.log(currentQuestion)
+    const questionHeader = document.createElement("h3")
+    questionHeader.textContent = currentQuestion.question
+    answers.appendChild(questionHeader)
+    for (let index = 0; index < currentQuestion.choices.length; index++) {
+        const choiceEl = document.createElement("button")
+        choiceEl.setAttribute("class", "btn")
+        choiceEl.setAttribute("id", index)
+        choiceEl.onclick = handleAnswer
+        choiceEl.value = currentQuestion.choices[index]
+        choiceEl.textContent = currentQuestion.choices[index]
+        answers.appendChild(choiceEl)
+        console.log(currentQuestion.choices[index], choiceEl.value)
+        
+    }
+}
+
+function handleAnswer(event) {
+    console.log(event.target)
+    if (currentQuestion.answer === event.target.value) {
+        console.log("correct answer")
+        // currentQuestionIndex++ ;
+        // showQuestions()
+    }
+    if (currentQuestion.answer !== event.target.value){
+        console.log("wrong answer")
+        // document.writeln("wrong answer") 
+        // currentQuestionIndex++ ;
+        // showQuestions()
+    }
+    
+    console.log(currentQuestionIndex)
+    
 }
 
 //To start time
 let timer = document.getElementById("timer")
 let startButton = document.getElementById("startButton")
-startButton.addEventListener("click", BeginQuiz)
+startButton.addEventListener("click", beginQuiz)
 
 
 let startTime = 50;
-function BeginQuiz(){
+function beginQuiz(event){
  showQuestions()   //starts the function that shows the questions
  appear.style.display="block";
  disappear.style.display="none";
