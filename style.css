@@ -16,3 +16,12 @@ h1{
     text-align: center;
     font-size: larger;
 }
+
+.answerChoices {
+    display: flex;
+    flex-direction: column;
+    max-width: 50rem;
+    align-items: stretch;
+    margin-left: auto;
+    margin-right: auto;
+}

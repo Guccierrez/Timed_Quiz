@@ -15,21 +15,29 @@
                     <p>High Scores</p>
                 </li>
                 <li>
-                    <p class="timer">Time Left</p>
+                    <p id="timer">Time Left</p>
                 </li>
             </ul>
         </nav>
     <h1>Gucci's Javascript QUUUUUIIIZZZZZ</h1>
     <br>
 </header>
-    <div class= "center" >
+    <div id="disappear" class= "center">
         <h4>In Gucci's ultimate super, amazing, ultimate Javascript test, we'll be checking to see not only how much you know
             but how quickly you can answer them to get the highest score possible! Click below to get started!
         <h4>
         <button type="button" id="startButton">Start Quiz!</button>    
     </div>
-    <div>
-
+   
+   
+    <div id = appear style="display:none;">
+        <h3></h3>
+        <p id="buttonsDiv" class="pl-5 ml-2 pt-5 justify-content-center font-weight-bold"></p>
+        <div class="answerChoices" id="answers">
+            <p><button id="A" class="answerButtons"></button></p>
+            <p><button id="B" class="answerButtons"></button></p>
+            <p><button id="C" class="answerButtons"></button></p>
+            <p><button id="D" class="answerButtons"></button></p>
 
     </div>
     <script src="./script.js"></script>

@@ -26,18 +26,40 @@ let questions = [
     }
 
 ];
+//to link questions and answers to the html
+let allAnswerChoices = document.querySelector(".answerchoices")
+let buttonsDiv = document.getElementById("buttonsDiv");
+let answers = document.getElementById("answers");
+let A = document.getElementById("A");
+let B = document.getElementById("B");
+let C = document.getElementById("C");
+let D = document.getElementById("D");
+let currentQuestionIndex = 0;
+
+// function that actually renders qustions onto the page.
+function showQuestions(){
+    buttonsDiv.textContent=questions[0].question;
+    A.textContent = questions[0].choices[0];
+    B.textContent = questions[0].choices[1];
+    C.textContent = questions[0].choices[2];
+    D.textContent = questions[0].choices[3];
+}
+
 //To start time
+let timer = document.getElementById("timer")
 let startButton = document.getElementById("startButton")
 startButton.addEventListener("click", BeginQuiz)
 
 
-let startTime = 5;
-
+let startTime = 50;
 function BeginQuiz(){
+ showQuestions()   //starts the function that shows the questions
+ appear.style.display="block";
+ disappear.style.display="none";
  let timeLeft = startTime;
  let timeInterval = setInterval(function (){
     timeLeft--;
-    startButton.textContent = startTime + " seconds until quiz is over";
+    timer.textContent = timeLeft + " seconds until quiz is over";
     if(timeLeft === 0){
         clearInterval(timeInterval);
         displayMessage();
