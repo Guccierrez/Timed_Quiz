@@ -35,19 +35,16 @@ let B = document.getElementById("B");
 let C = document.getElementById("C");
 let D = document.getElementById("D");
 let currentQuestionIndex = 0;
-const currentQuestion = questions[currentQuestionIndex]
+let currentQuestion = questions[currentQuestionIndex]
 
 // function that actually renders qustions onto the page.
 function showQuestions(){
-    // buttonsDiv.textContent=questions[0].question;
-    // A.textContent = questions[0].choices[0];
-    // B.textContent = questions[0].choices[1];
-    // C.textContent = questions[0].choices[2];
-    // D.textContent = questions[0].choices[3];
     console.log(currentQuestion)
     const questionHeader = document.createElement("h3")
     questionHeader.textContent = currentQuestion.question
     answers.appendChild(questionHeader)
+    
+    
     for (let index = 0; index < currentQuestion.choices.length; index++) {
         const choiceEl = document.createElement("button")
         choiceEl.setAttribute("class", "btn")
@@ -64,16 +61,16 @@ function showQuestions(){
 function handleAnswer(event) {
     console.log(event.target)
     if (currentQuestion.answer === event.target.value) {
-        console.log("correct answer")
+        console.log("correct answer");
         // currentQuestionIndex++ ;
-        // showQuestions()
+        questions++
     }
     if (currentQuestion.answer !== event.target.value){
-        console.log("wrong answer")
-        // document.writeln("wrong answer") 
+        console.log("wrong answer");
         // currentQuestionIndex++ ;
-        // showQuestions()
+        questions++
     }
+    
     
     console.log(currentQuestionIndex)
     
@@ -87,18 +84,18 @@ startButton.addEventListener("click", beginQuiz)
 
 let startTime = 50;
 function beginQuiz(event){
- showQuestions()   //starts the function that shows the questions
- appear.style.display="block";
- disappear.style.display="none";
- let timeLeft = startTime;
- let timeInterval = setInterval(function (){
-    timeLeft--;
-    timer.textContent = timeLeft + " seconds until quiz is over";
-    if(timeLeft === 0){
-        clearInterval(timeInterval);
-        displayMessage();
-    }
- },1000);
+    showQuestions()   //starts the function that shows the questions
+    appear.style.display="block";
+    disappear.style.display="none";
+    let timeLeft = startTime;
+    let timeInterval = setInterval(function (){
+        timeLeft--;
+        timer.textContent = timeLeft + " seconds until quiz is over";
+        if(timeLeft === 0){
+            clearInterval(timeInterval);
+            displayMessage();
+        }
+    },1000);
 }
 function displayMessage(){
     console.log("hello world")
@@ -107,6 +104,13 @@ function displayMessage(){
 
 
 
+
+
+// buttonsDiv.textContent=questions[0].question;
+// A.textContent = questions[0].choices[0];
+// B.textContent = questions[0].choices[1];
+// C.textContent = questions[0].choices[2];
+// D.textContent = questions[0].choices[3];
 
 
 
