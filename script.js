@@ -12,17 +12,17 @@ let questions = [
     {
         question: "Which is not a common data-type?",
         choices: ["a.strings" , "b.alerts", "c.numbers", "d.booleans"],
-        answer: "b. alerts"
+        answer: "b.alerts"
     },
     {
         question: "What is the correct syntax for linking an HTML document to your Javascript?",
         choices: ["a.<java>" , "b.<style>", "c.<script>", "d.<script.css>"],
-        answer: "c.<script> "
+        answer: "c.<script>"
     },
     {
         question: "What is the correct syntax for calling a function?",
-        choices: ["a.hey function" , "b.console.log()", "c.Function()", "d.funtion = hello world"],
-        answer: "c. function()"
+        choices: ["a.hey function" , "b.console.log()", "c.function()", "d.funtion = hello world"],
+        answer: "c.function()"
     }
 
 ];
@@ -40,6 +40,7 @@ let currentQuestion = questions[currentQuestionIndex]
 // function that actually renders qustions onto the page.
 function showQuestions(){
     console.log(currentQuestion)
+    answers.innerHTML = ""
     const questionHeader = document.createElement("h3")
     questionHeader.textContent = currentQuestion.question
     answers.appendChild(questionHeader)
@@ -49,32 +50,32 @@ function showQuestions(){
         const choiceEl = document.createElement("button")
         choiceEl.setAttribute("class", "btn")
         choiceEl.setAttribute("id", index)
-        choiceEl.onclick = handleAnswer
+        choiceEl.onclick = questionCarousel
         choiceEl.value = currentQuestion.choices[index]
         choiceEl.textContent = currentQuestion.choices[index]
         answers.appendChild(choiceEl)
         console.log(currentQuestion.choices[index], choiceEl.value)
-        
     }
 }
 
-function handleAnswer(event) {
+function questionCarousel(event) {
     console.log(event.target)
+    if(event.target.matches ("button"))
     if (currentQuestion.answer === event.target.value) {
-        console.log("correct answer");
-        currentQuestionIndex++ ;
+        console.log("correct answer");   
+    } else{
         
-    }
-    if (currentQuestion.answer !== event.target.value){
         console.log("wrong answer");
-        currentQuestionIndex++ ;
-        
     }
+    currentQuestionIndex++;
+    currentQuestion = questions[currentQuestionIndex]
     
-    
+    showQuestions()
     console.log(currentQuestionIndex)
     
 }
+
+
 
 //To start time
 let timer = document.getElementById("timer")
@@ -82,7 +83,7 @@ let startButton = document.getElementById("startButton")
 startButton.addEventListener("click", beginQuiz)
 
 
-let startTime = 50;
+let startTime = 100;
 function beginQuiz(){
     showQuestions()   //starts the function that shows the questions
     appear.style.display="block";
@@ -100,16 +101,6 @@ function beginQuiz(){
 function displayMessage(){
     console.log("hello world")
 }
-
-
-// console.log(currentQuestionIndex)
-// buttonsDiv.textContent=questions[0].question;
-// A.textContent = questions[0].choices[0];
-// B.textContent = questions[0].choices[1];
-// C.textContent = questions[0].choices[2];
-// D.textContent = questions[0].choices[3];
-
-
 
 
 // buttonsDiv.textContent=questions[0].question;
