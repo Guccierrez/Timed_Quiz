@@ -62,13 +62,13 @@ function handleAnswer(event) {
     console.log(event.target)
     if (currentQuestion.answer === event.target.value) {
         console.log("correct answer");
-        // currentQuestionIndex++ ;
-        questions++
+        currentQuestionIndex++ ;
+        
     }
     if (currentQuestion.answer !== event.target.value){
         console.log("wrong answer");
-        // currentQuestionIndex++ ;
-        questions++
+        currentQuestionIndex++ ;
+        
     }
     
     
@@ -83,7 +83,7 @@ startButton.addEventListener("click", beginQuiz)
 
 
 let startTime = 50;
-function beginQuiz(event){
+function beginQuiz(){
     showQuestions()   //starts the function that shows the questions
     appear.style.display="block";
     disappear.style.display="none";
