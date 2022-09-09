@@ -76,15 +76,16 @@ function questionCarousel(event) {
     } else{
         timeLeft -= 10;
         console.log("wrong answer");
-    }
+    } if (currentQuestionIndex === 4){
+         displayMessage()
+     }else{
     currentQuestionIndex++;
     currentQuestion = questions[currentQuestionIndex]
-    // if (currentQuestionIndex === 5){
-    //     displayMessage()
-    // }else{
+    
     showQuestions()
     console.log(currentQuestionIndex)
     }
+}
 
 
 
@@ -130,7 +131,8 @@ function displayMessage(){
     header.innerHTML = "GAME OVER";
     score.innerHTML = rightAnswers + "!";
     highScorer.style.display="block";
-    
+    appear.style.display="none";
+    timeLeft=1;
     for (let i = 0; i < storage.length; i++) {
         const element = storage[i];
         console.log(element.initial)
