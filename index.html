@@ -12,7 +12,7 @@
         <nav>
             <ul>
                 <li>
-                    <p>High Scores</p>
+                    <button id="seeHighScores">High Scores</button> 
                 </li>
                 <li>
                     <p id="timer">Time Left</p>
@@ -29,7 +29,19 @@
         <button type="button" id="startButton">Start Quiz!</button>    
     </div>
    
-   
+    <h1></h1>
+    <h2></h2>
+    
+    <div id="highScorer" style="display:none">
+    <label  for="Name">Initials!:</label>
+    <input id="initialValue" placeholder="High score">
+    <button id="highScoreButton">save</button>
+
+        <ol id="highScoreList">
+            
+        </ol>
+    </div>
+    
     <div id = appear style="display:none;">
         <h3></h3>
         <p id="buttonsDiv" class="pl-5 ml-2 pt-5 justify-content-center font-weight-bold"></p>

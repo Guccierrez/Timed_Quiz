@@ -23,9 +23,12 @@ let questions = [
         question: "What is the correct syntax for calling a function?",
         choices: ["a.hey function" , "b.console.log()", "c.function()", "d.funtion = hello world"],
         answer: "c.function()"
-    }
+    },
 
 ];
+let storage = JSON.parse(localStorage.getItem("highScores")) || []
+
+
 //to link questions and answers to the html
 let allAnswerChoices = document.querySelector(".answerchoices")
 let buttonsDiv = document.getElementById("buttonsDiv");
@@ -36,6 +39,11 @@ let C = document.getElementById("C");
 let D = document.getElementById("D");
 let currentQuestionIndex = 0;
 let currentQuestion = questions[currentQuestionIndex]
+let header = document.querySelector("h1")
+let score = document.querySelector("h2")
+let rightAnswers = 0;
+
+
 
 // function that actually renders qustions onto the page.
 function showQuestions(){
@@ -44,7 +52,6 @@ function showQuestions(){
     const questionHeader = document.createElement("h3")
     questionHeader.textContent = currentQuestion.question
     answers.appendChild(questionHeader)
-    
     
     for (let index = 0; index < currentQuestion.choices.length; index++) {
         const choiceEl = document.createElement("button")
@@ -58,22 +65,27 @@ function showQuestions(){
     }
 }
 
+
+
 function questionCarousel(event) {
     console.log(event.target)
     if(event.target.matches ("button"))
     if (currentQuestion.answer === event.target.value) {
-        console.log("correct answer");   
+        console.log("correct answer");  
+        rightAnswers++; 
     } else{
-        
+        timeLeft -= 10;
         console.log("wrong answer");
     }
     currentQuestionIndex++;
     currentQuestion = questions[currentQuestionIndex]
-    
+    // if (currentQuestionIndex === 5){
+    //     displayMessage()
+    // }else{
     showQuestions()
     console.log(currentQuestionIndex)
-    
-}
+    }
+
 
 
 
@@ -83,24 +95,63 @@ let startButton = document.getElementById("startButton")
 startButton.addEventListener("click", beginQuiz)
 
 
-let startTime = 100;
+let timeLeft = 30;
 function beginQuiz(){
     showQuestions()   //starts the function that shows the questions
     appear.style.display="block";
     disappear.style.display="none";
-    let timeLeft = startTime;
     let timeInterval = setInterval(function (){
         timeLeft--;
         timer.textContent = timeLeft + " seconds until quiz is over";
         if(timeLeft === 0){
             clearInterval(timeInterval);
             displayMessage();
+            appear.style.display="none";
         }
     },1000);
 }
-function displayMessage(){
-    console.log("hello world")
+
+let highScoreButton = document.querySelector("#highScoreButton")
+highScoreButton.onclick = sendItemsToLocalStorage
+
+function sendItemsToLocalStorage(){
+    let initials = document.querySelector("#initialValue").value
+    storage.push({
+        initial:initials,
+        score:rightAnswers,
+    })
+    localStorage.setItem("highScores",JSON.stringify(storage))
 }
+
+let highScoresList = document.querySelector("#highScoreList")
+
+
+function displayMessage(){
+    header.innerHTML = "GAME OVER";
+    score.innerHTML = rightAnswers + "!";
+    highScorer.style.display="block";
+    
+    for (let i = 0; i < storage.length; i++) {
+        const element = storage[i];
+        console.log(element.initial)
+        console.log(element.score)
+        let listEl = document.createElement("li")
+        listEl.textContent = element.initial + "   |   " + element.score
+        highScoresList.appendChild(listEl)
+        
+    }
+}
+
+
+
+let seeHighScore = document.getElementById("seeHighScores");
+seeHighScores.addEventListener("click",viewHighScores)
+function viewHighScores(){
+    displayMessage();
+    disappear.style.display="none";
+    appear.style.display="none";
+};
+
 
 
 // buttonsDiv.textContent=questions[0].question;
@@ -108,9 +159,6 @@ function displayMessage(){
 // B.textContent = questions[0].choices[1];
 // C.textContent = questions[0].choices[2];
 // D.textContent = questions[0].choices[3];
-
-
-
 
 // /* GIVEN I am taking a code quiz
 // WHEN I click the start button
