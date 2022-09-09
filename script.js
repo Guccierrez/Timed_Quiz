@@ -96,7 +96,7 @@ let startButton = document.getElementById("startButton")
 startButton.addEventListener("click", beginQuiz)
 
 
-let timeLeft = 30;
+let timeLeft = 60;
 function beginQuiz(){
     showQuestions()   //starts the function that shows the questions
     appear.style.display="block";
