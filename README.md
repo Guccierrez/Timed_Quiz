@@ -40,7 +40,7 @@ No prerequisites required.
 
 ### Installation
 
-This page requires no installation of any kind simply click on the link, hit start, and test your knowledge and submit your highscore.(PLEEEAASSSEE hit refresh then highscore to see your most recent score.)
+This page requires no installation of any kind simply click on the link, hit start, and test your knowledge and submit your highscore.(PLEEEAASSSEE hit the highscore button after submitting your initials to see your most recent score.)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
