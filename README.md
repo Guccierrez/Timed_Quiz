@@ -80,7 +80,7 @@ Fabian Gutierrez - [fabiangutierrez580@gmail.com]
 (LinkedIn) - [www.linkedin.com/in/fabian-gutierrez-016523248]
 
 
-Project Link: [https://github.com/Guccierrez/Password_generator]
+Project Link: [https://guccierrez.github.io/Timed_Quiz/]
 
 
 
